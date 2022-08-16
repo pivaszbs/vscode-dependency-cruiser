@@ -97,3 +97,5 @@ Any other Known issue? We would really appreciate if you can [open a issue](http
 
 -   Generate a dependencies report from the command palette or from the context menu
 -   Open a dependency by clicking on the node from the report.
+
+![Visualization of this repo](./diagram.svg)

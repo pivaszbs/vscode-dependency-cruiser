@@ -2,11 +2,11 @@
     "name": "vscode-dependency-cruiser",
     "displayName": "Dependency Cruiser Extension",
     "description": "Visual Studio Code Extension to build dependency graphs using dependency-cruiser. Visualize module dependencies from any file",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "juanallo",
     "license": "SEE LICENSE IN LICENSE",
     "engines": {
-        "vscode": "^1.43.0"
+        "vscode": "^1.69.0"
     },
     "categories": [
         "Other"
@@ -86,6 +86,34 @@
                     "scope": "resource",
                     "description": "Prefix to add to each node URL. For example, you can use this to alllow opening the file in github"
                 },
+                "dependencyCruiser.config": {
+                    "type": "string",
+                    "scope": "resource",
+                    "description": "Prefix to add to each node URL. For example, you can use this to alllow opening the file in github"
+                },
+                "dependencyCruiser.combinedDependencies": {
+                    "type": "boolean",
+                    "scope": "resource",
+                    "description": "Prefix to add to each node URL. For example, you can use this to alllow opening the file in github"
+                },
+                "dependencyCruiser.metrics": {
+                    "type": "boolean",
+                    "scope": "resource",
+                    "description": "Prefix to add to each node URL. For example, you can use this to alllow opening the file in github"
+                },
+                "dependencyCruiser.metricsType": {
+                    "type": "string",
+                    "scope": "resource",
+                    "description": "Prefix to add to each node URL. For example, you can use this to alllow opening the file in github",
+                    "default": "instability",
+                    "enum": [
+                        "instability",
+                        "moduleCount",
+                        "afferentCouplings",
+                        "efferentCouplings",
+                        "name"
+                    ]
+                },
                 "dependencyCruiser.moduleSystems": {
                     "type": "array",
                     "scope": "resource",
@@ -141,14 +169,13 @@
         }
     },
     "scripts": {
-        "vscode:prepublish": "npm run build",
-        "build": "parcel build -t node --no-source-maps --bundle-node-modules node_modules/dependency-cruiser/src/main/index.js --out-file dependencyCruiser.js",
         "lint": "eslint --cache --fix . && prettier --write .",
         "pretest": "npm run lint && npm run build",
         "test": "node ./test/runTest.js",
         "coverage": "nyc npm run test"
     },
     "dependencies": {
+        "deepmerge": "^4.2.2",
         "dependency-cruiser": "^11.13.0",
         "viz.js": "^2.1.2"
     },
